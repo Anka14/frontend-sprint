@@ -67,3 +67,31 @@ const end = Math.floor(date2.getTime() / (3600 * 24 * 1000)); //days as integer 
 const daysDiff = end - start; // exact dates
 console.log(daysDiff);*/
 
+
+//Using timestamps, find the exact time and date we will be in 80000 hours.
+//Write a function to display the time and date for any amount of hours given in the future. 
+//Create a number input for the hours and listen for keyup events, dynamically display the date in the number of hours given by the input.
+
+
+const div = document.createElement('div')
+document.body.prepend(div);
+const input = document.createElement ('input')
+input.type ='number'
+div.append(input);
+const output = document.createElement('span')
+div.append(output);
+
+const newDate = (new Date()).getTime()
+    console.log (newDate)
+  
+input.addEventListener('keyup',(event) =>{
+  if (event.target.value){
+const getDate = new Date(newDate + event.target.value* 60*60*1000 )
+console.log(getDate)
+output.textContent = getDate
+  } else {
+    console.log ('you did not write anything')
+  }
+})
+
+ 
