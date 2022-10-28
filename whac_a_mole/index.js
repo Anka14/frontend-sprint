@@ -12,6 +12,7 @@ function run (){
   img.classList.add ('mole')
   img.src = 'img/mole.png'
   
+  
   img.addEventListener('click', ()=> {
     score += 10
     scoreEl.textContent = score
