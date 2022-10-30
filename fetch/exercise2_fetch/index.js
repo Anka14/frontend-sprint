@@ -3,7 +3,21 @@
 
 const button = document.querySelector('.btn');
 const input = document.querySelector('input');
-let value = input.value;
+//const button2 = document.createElement('button')
+////button2.textContent = 'CITY'
+//button.after(button2);
+const select = document.createElement ('select');
+button.after(select);
+const option1 = document.createElement ('option');
+option1.setAttribute('value','South Christy');
+option1.textContent = 'South Christy'
+select.append(option1)
+const option2 = document.createElement('option');
+option2.setAttribute('value','Lebsackbury');
+option2.textContent = 'Lebsackbury'
+select.append(option2);
+
+
 
 //GET
 /*fetch ('https://jsonplaceholder.typicode.com/users')
@@ -21,17 +35,19 @@ let value = input.value;
 //POST
 
 button.addEventListener ('click', function(){
+  let url = 'https://jsonplaceholder.typicode.com/users';
+  let newObj = {
+    title: 'new name',
+    username: input.value,
+  };
 
-fetch('https://jsonplaceholder.typicode.com/users',{
+fetch(url,{
   method:'POST',
+  body: JSON.stringify(newObj),
   headers:{
     'Content-type':'application/json'
   },
-  body: JSON.stringify({
-    'name': input.value
-  }
-    
-  )
+  
 })
 .then(res => {
   if (res.ok) {
@@ -40,6 +56,7 @@ fetch('https://jsonplaceholder.typicode.com/users',{
     console.log ('post request unsuccesful')
   } return res
 })
+
 .then(res => res.json())
 .then (data => display(data))
 .catch(error => console.log (error))
@@ -47,10 +64,49 @@ fetch('https://jsonplaceholder.typicode.com/users',{
 })
 
 function display(data){
+  console.log(data)
   const output = document.createElement ('div');
   document.body.append(output);
   output.innerHTML = input.value;
 
 }
 
-//Also add a <select> field with a few countries in it, to narrow down the search to a specific country. You'll have to look in agify documentation to know more about that.
+select.addEventListener('change', function (event){
+  fetch('https://jsonplaceholder.typicode.com/users')
+  .then(resp => {
+    if (resp.ok) {
+      console.log ('GET IS SUCCESSFUL')
+    } else {
+      console.log ('GET is not successful')
+    }
+    return resp
+  })
+
+  .then(resp => resp.json())
+  .then (json => {
+
+//console.log (cities)
+if(option1){
+  if (event.target.value === 'South Christy'){
+    json.forEach(element => {
+    if(element.address.city  === 'South Christy') {
+    
+    const output1 = document.createElement('div')
+    output1.textContent = element.address.city;
+    
+    select.after(output1);
+
+/*console.log ('yes')*/
+  }
+  
+  
+});
+  }
+}
+
+
+
+
+  })
+})
+
