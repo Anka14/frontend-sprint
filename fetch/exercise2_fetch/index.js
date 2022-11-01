@@ -68,6 +68,10 @@ function display(data){
   const output = document.createElement ('div');
   document.body.append(output);
   output.innerHTML = input.value;
+  let key = input.value;
+  let value = input.value;
+  localStorage.setItem(key, value)
+input.reset()
 
 }
 
@@ -96,17 +100,14 @@ if(option1){
     
     select.after(output1);
 
-/*console.log ('yes')*/
-  }
-  
-  
+    let key1 = select.value;
+    let value1 = select.value;
+    localStorage.setItem(key1,value1)
+
+  } 
 });
-  }
 }
-
-
-
-
-  })
+}
+})
 })
 
