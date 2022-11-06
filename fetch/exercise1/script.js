@@ -9,10 +9,11 @@ const btn = document.createElement('button');
 btn.textContent = 'download the rules';
 document.body.appendChild(btn);
 
-let url = 'bcode.json';
+
 
 btn.addEventListener ('click', function(){
-  fetch(url)
+  
+  fetch('./bcode.json')
   .then(response => response.json())
   
   .then(json=>renderList(json))
